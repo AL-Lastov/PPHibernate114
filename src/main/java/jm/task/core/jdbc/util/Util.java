@@ -12,9 +12,13 @@ public class Util {
         System.out.println("kyky");
     }
 
-    public static synchronized Util getInstance() {
+    public static Util getInstance() {
         if (instance == null) {
-            instance = new Util();
+            synchronized (Util.class) {
+                if (instance == null) {
+                    instance = new Util();
+                }
+            }
         }
         return instance;
     }
